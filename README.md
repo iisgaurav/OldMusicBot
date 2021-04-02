@@ -76,14 +76,14 @@ Copy `example.env` to `.env` and fill it with your credentials.
 
 [![GenerateString](https://img.shields.io/badge/repl.it-generateString-yellowgreen)](https://replit.com/@itzgauravv/AuraXVCBot#main.py) 
 
-## Notes
+## Commands
 -The commands and there use is explained here-:
 - `/saavn` To search song on jio saavan and play the first result 
 - `/ut` To search the song on Youtube and play the first matching result.
 - `/deezer` To search song on deezer and play good quality stream.
 - `/play` Reply this in response to a link or any telegram audio file it will be played 
 - `/skip` to skip current song 
-- `/stop or /kill` to stop the streaming of song 
+- `/stop` to stop the streaming of song 
 - `/pause` to pause the stream 
 - `/resume` to resume the playback. 
 - Inline search is also supported.
