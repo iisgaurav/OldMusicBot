@@ -89,6 +89,8 @@ async def play(client: Client, message_: Message):
          ) 
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
 
+
+#---------------------------------DEEZER------------------------------------------------------------------
 @Client.on_message(
     filters.command("deezer")
     & filters.group
@@ -130,7 +132,7 @@ async def deezer(client: Client, message_: Message):
         caption=f"Playing [{title}]({url}) Via [Deezer](https://t.me/AuraXSupport)."
     ) 
     os.remove("final.png")
-# Jiosaavn--------------------------------------------------------------------------------------
+# -----------------------------------------------------Jiosaavn-----------------------------------------------------------------
 @Client.on_message(
     filters.command("saavn")
     & filters.group
@@ -167,7 +169,7 @@ async def jiosaavn(client: Client, message_: Message):
     else:
         await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫𝗠𝘂𝘀𝗶𝗰𝗕𝗼𝘁✯=▶️ Playing.....")
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
-    await res.edit("Processing Thumbnail.")
+    await res.edit("Generating Thumbnail.")
     await generate_cover_square(requested_by, sname, ssingers, sduration, sthumb)
     await res.delete()
     m = await client.send_photo(
@@ -186,6 +188,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     newImage = image.resize((newWidth, newHeight))
     return newImage
  
+ #-----------------------------------YOUTUBE--------------------------------------------------------------
 @Client.on_message(
     filters.command("ut")
     & filters.group
@@ -218,7 +221,7 @@ async def ytp(client: Client, message_: Message):
     else:
         await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫𝗠𝘂𝘀𝗶𝗰𝗕𝗼𝘁✯=▶️ Playing....")
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
-    await res.edit("Processing Thumbnail.")
+    await res.edit("Generating Thumbnail.")
     await generate_cover(requested_by, title, views, duration, thumbnail)
     res.delete
     m = await client.send_photo(
@@ -232,7 +235,7 @@ async def ytp(client: Client, message_: Message):
     )
     os.remove("final.png")
 
-async def generate_cover(requested_by, title, artist, duration, thumbnail):
+async def generate_cover_square(requested_by, title, artist, duration, thumbnail):
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
@@ -241,25 +244,25 @@ async def generate_cover(requested_by, title, artist, duration, thumbnail):
                 await f.close()
     image1 = Image.open("./background.png")
     image2 = Image.open("etc/AURAX.png")
-    image3 = changeImageSize(600, 500, image1)
-    image4 = changeImageSize(600, 500, image2)
+    image3 = changeImageSize(1280, 720, image1)
+    image4 = changeImageSize(1280, 720, image2)
     image5 = image3.convert("RGBA")
     image6 = image4.convert("RGBA")
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/font.otf", 20)
-    draw.text((150, 380), f"Title: {title}", (255, 255, 255), font=font)
-    draw.text((150, 405), f"Artist: {artist}", (255, 255, 255), font=font)
+    font = ImageFont.truetype("etc/font.otf", 32)
+    draw.text((190, 550), f"Title: {title}", (255, 255, 255), font=font)
+    draw.text((190, 550), f"Artist: {artist}", (255, 255, 255), font=font)
     draw.text(
-        (150, 430),
+        (190, 590),
         f"Duration: {duration} Seconds",
         (255, 255, 255),
         font=font,
     )
 
     draw.text(
-        (150, 455),
+        (190, 670),
         f"Played By: {requested_by}",
         (255, 255, 255),
         font=font,
