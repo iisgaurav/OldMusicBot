@@ -12,9 +12,10 @@ async def start_(client: Client, message: Message):
     await message.reply_text(
         f"""<b>Hi {message.from_user.first_name}!
 I am 𝗔𝘂𝗿𝗮𝗫𝗠𝘂𝘀𝗶𝗰𝗕𝗼𝘁 VC Music Player, an open-source bot that lets you play music in your Telegram groups.
-Maintained by [AuraX Owner](t.me/AuraX_Owner) ❤
+Maintained by @AuraX_Owner ❤
+For source code Join our support group @AuraXSupport.
 Use the buttons below to know more about me.
-For source code Join our support group @AuraXSupport </b>""",
+ </b>""",
       
        
         reply_markup=InlineKeyboardMarkup(
