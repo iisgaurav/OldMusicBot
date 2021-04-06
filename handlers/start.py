@@ -21,23 +21,23 @@ For source code Join our support group @AuraXSupport.
             [
                 [
                     InlineKeyboardButton(
-                        "𝗖𝗠𝗗𝗦 ⚡️", url="https://telegra.ph/AuraXMusicBot---A-TELEGRAM-VC-MUSIC-PLAYER-BOT-03-28"
+                        "Assistant⚡️", url="https://t.me/AuraXMusic"
                     ),
                     InlineKeyboardButton(
-                        "𝗖𝗥𝗘𝗔𝗧𝗘𝗥⚡️", url="https://t.me/AuraX_Owner",
+                        "Creater⚡️", url="https://t.me/AuraX_Owner",
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "𝗚𝗥𝗢𝗨𝗣 ⚡️", url="https://t.me/AuraXSupport"
+                        "Support⚡️", url="https://t.me/AuraXSupport"
                     ),
                     InlineKeyboardButton(
-                        "𝗨𝗣𝗗𝗔𝗧𝗘𝗦 ⚡️", url="https://t.me/AuraXUpdates"
+                        "Updates⚡️", url="https://t.me/AuraXUpdates"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "𝗣𝗚𝗟𝗭𝗢𝗡𝗘 𝗖𝗛𝗔𝗧𝗚𝗥𝗢𝗨𝗣 ⚡️", url="https://t.me/PglZone"
+                        "PglZone⚡️", url="https://t.me/PglZone"
                     )
                 ]
             ]
