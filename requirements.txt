@@ -1,8 +1,8 @@
 git+https://github.com/pyrogram/pyrogram
-TgCrypto==1.2.2
+TgCrypto
 git+https://github.com/pytgcalls/pytgcalls
 python-dotenv
-youtube_dl==2021.4.1
+youtube_dl
 youtube_search_python
 OpenCC
 Pillow
