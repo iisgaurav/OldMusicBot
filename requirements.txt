@@ -15,6 +15,3 @@ ffmpeg
 aiofiles
 wget
 python-arq
-gTTS
-pyaml
-python-mpv
