@@ -9,6 +9,9 @@ Pillow==8.2.0
 requests
 youtube-search==2.1.0
 aiohttp
+asyncio
+search_engine_parser
+ffmpeg
 aiofiles
 wget
 python-arq
