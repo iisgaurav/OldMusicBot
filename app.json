@@ -31,10 +31,9 @@
             "value": "15"
         }
     },
-       },
     "buildpacks": [
        {
       "url": "heroku/python"
        }
      ]
-  }
+}
