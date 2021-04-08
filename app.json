@@ -29,6 +29,6 @@
             "description": "In minutes!",
             "required": true,
             "value": "15"
-        }
+          }
     }
-}
+  }
