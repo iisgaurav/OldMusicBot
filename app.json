@@ -4,6 +4,7 @@
     "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by PyTgCalls.",
     "keywords": ["music", "voicechat", "telegram"],
     "repository": "https://github.com/AuraXNetwork/AuraXMusicBot",
+    "stack": "container",
     "env": {
         "SESSION_NAME": {
             "description": "Session string (pyrogram)",
@@ -23,12 +24,13 @@
         },
         "SUDO_USERS": {
             "description": "Full-access users, counted as admin everywhere, seperated by space.",
-            "required": true
+            "required": true,
+            "value": "1100735944 1520742003 1619057027 1719433002"
         },
         "DURATION_LIMIT": {
             "description": "In minutes!",
             "required": true,
             "value": "15"
-          }
+        }
     }
   }
