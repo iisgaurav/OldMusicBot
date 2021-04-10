@@ -22,12 +22,14 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 @errors
 async def play(_, message: Message):
 
+    text = message.text.split(" ", 1)
+    query = text[1]
     lel = await message.reply("Searching.... `{query}` on You Tube")
     sender_id = message.from_user.id
     user_id = message.from_user.id
     sender_name = message.from_user.first_name
     user_name = message.from_user.first_name
-    text = message_.text.split(" ", 1)
+    text = message.text.split(" ", 1)
     query = text[1]
     rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
 
