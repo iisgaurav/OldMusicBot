@@ -39,7 +39,7 @@ async def resume(_, message: Message):
         await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=⏸ Resumed!")
 
 
-@Client.on_message(command("end") & other_filters)
+@Client.on_message(command("end" or "stop") & other_filters)
 @errors
 @authorized_users_only
 async def stop(_, message: Message):
@@ -55,7 +55,7 @@ async def stop(_, message: Message):
         await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=❌ Stopped streaming!")
 
 
-@Client.on_message(command("skip") & other_filters)
+@Client.on_message(command("skip" or "next") & other_filters)
 @errors
 @authorized_users_only
 async def skip(_, message: Message):
