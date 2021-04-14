@@ -2,21 +2,14 @@ from typing import List
 
 from pyrogram.types import Chat, User
 
-import cache.admins
+from cache.admins import get, set
 
 
 async def get_administrators(chat: Chat) -> List[User]:
-    get = cache.admins.get(chat.id)
+    _get = get(chat.id)
 
-    if get:
-        return get
+    if _get:
+        return _get
     else:
-        administrators = await chat.get_members(filter="administrators")
-        to_set = []
-
-        for administrator in administrators:
-            if administrator.can_manage_voice_chats:
-                to_set.append(administrator.user.id)
-
-        cache.admins.set(chat.id, to_set)
+        set(chat.id, [member.user for member in await chat.get_members(filter="administrators")])
         return await get_administrators(chat)

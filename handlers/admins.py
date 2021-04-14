@@ -1,75 +1,89 @@
-from asyncio.queues import QueueEmpty
-
-from pyrogram import Client
+from pyrogram import Client, filters
 from pyrogram.types import Message
-from callsmusic import callsmusic
+import tgcalls
+import sira
+from config import SUDO_USERS
+from cache.admins import set
+from helpers.wrappers import errors, admins_only
 
-from config import BOT_NAME as BN
-from helpers.filters import command, other_filters
-from helpers.decorators import errors, authorized_users_only
 
-
-@Client.on_message(command("pause") & other_filters)
+@Client.on_message(
+    filters.command("pause")
+    & filters.group
+    & ~ filters.edited
+)
 @errors
-@authorized_users_only
-async def pause(_, message: Message):
-    if (
-            message.chat.id not in callsmusic.pytgcalls.active_calls
-    ) or (
-            callsmusic.pytgcalls.active_calls[message.chat.id] == 'paused'
-    ):
-        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=❗ Nothing is playing!")
-    else:
-        callsmusic.pytgcalls.pause_stream(message.chat.id)
-        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Paused!")
+@admins_only
+async def pause(client: Client, message: Message):
+    tgcalls.pytgcalls.pause_stream(message.chat.id)
+    await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=⏸ Paused.")
 
 
-@Client.on_message(command("resume") & other_filters)
+@Client.on_message(
+    filters.command("resume")
+    & filters.group
+    & ~ filters.edited
+)
 @errors
-@authorized_users_only
-async def resume(_, message: Message):
-    if (
-            message.chat.id not in callsmusic.pytgcalls.active_calls
-    ) or (
-            callsmusic.pytgcalls.active_calls[message.chat.id] == 'playing'
-    ):
-        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=❗ Nothing is paused!")
-    else:
-        callsmusic.pytgcalls.resume_stream(message.chat.id)
-        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=⏸ Resumed!")
+@admins_only
+async def resume(client: Client, message: Message):
+    tgcalls.pytgcalls.resume_stream(message.chat.id)
+    await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Resumed.")
 
 
-@Client.on_message(command("end" or "stop") & other_filters)
+@Client.on_message(
+    filters.command(["stop", "end"])
+    & filters.group
+    & ~ filters.edited
+)
 @errors
-@authorized_users_only
-async def stop(_, message: Message):
-    if message.chat.id not in callsmusic.pytgcalls.active_calls:
-        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=❗ Nothing is streaming!")
-    else:
-        try:
-            callsmusic.queues.clear(message.chat.id)
-        except QueueEmpty:
-            pass
+@admins_only
+async def stop(client: Client, message: Message):
+    try:
+        sira.clear(message.chat.id)
+    except:
+        pass
 
-        callsmusic.pytgcalls.leave_group_call(message.chat.id)
-        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=❌ Stopped streaming!")
+    tgcalls.pytgcalls.leave_group_call(message.chat.id)
+    await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=⏹ Stopped streaming.")
 
 
-@Client.on_message(command("skip" or "next") & other_filters)
+@Client.on_message(
+    filters.command(["skip", "next"])
+    & filters.group
+    & ~ filters.edited
+)
 @errors
-@authorized_users_only
-async def skip(_, message: Message):
-    if message.chat.id not in callsmusic.pytgcalls.active_calls:
-        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=❗ Nothing is playing to skip!")
+@admins_only
+async def skip(client: Client, message: Message):
+    chat_id = message.chat.id
+
+    sira.task_done(chat_id)
+    await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=🔄 Processing")
+    if sira.is_empty(chat_id):
+        tgcalls.pytgcalls.leave_group_call(chat_id)
+        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=❗ Nothing in queue")
     else:
-        callsmusic.queues.task_done(message.chat.id)
+        tgcalls.pytgcalls.change_stream(
+            chat_id, sira.get(chat_id)["file_path"]
+        )
 
-        if callsmusic.queues.is_empty(message.chat.id):
-            callsmusic.pytgcalls.leave_group_call(message.chat.id)
-        else:
-            callsmusic.pytgcalls.change_stream(
-                message.chat.id,
-                callsmusic.queues.get(message.chat.id)["file"]
-            )
+        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=⏩ Skipped the current song.")
 
-        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=➡️ Skipped the current song!")
+
+@Client.on_message(
+    filters.command("admincache")
+)
+@errors
+@admins_only
+async def admincache(client, message: Message):
+    set(message.chat.id, [member.user for member in await message.chat.get_members(filter="administrators")])
+    await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=❇️ Admin cache refreshed!")
+
+@Client.on_message(
+    filters.command("help")
+    & filters.group
+    & ~ filters.edited
+)
+async def helper(client , message:Message):
+     await message.reply_text("The commands and there use is explained here-: \n `/saavn` To search song on jio saavan and play the first result \n `/deezer` To search the song on deezer and get good quality stream \n `/ytt` To search the song on Youtube and play the first matching result \n '/play` Reply this in response to a link or any telegram audio file it will be played \n `/skip` to skip current song \n `/stop or /kill` to stop the streaming of song \n `/pause` to pause the stream \n `/resume` to resume the playback. \n Inline search is also supported.")

@@ -1,8 +1,6 @@
-from os import path
-
 from youtube_dl import YoutubeDL
 
-from config import BOT_NAME as bn, DURATION_LIMIT
+from config import DURATION_LIMIT
 from helpers.errors import DurationLimitError
 
 ydl_opts = {
@@ -20,8 +18,8 @@ def download(url: str) -> str:
 
     if duration > DURATION_LIMIT:
         raise DurationLimitError(
-            f"✯𝗔𝘂𝗿𝗮𝗫✯=❌ Videos longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided video is {duration} minute(s)"
+            f"✯𝗔𝘂𝗿𝗮𝗫✯=Videos longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided video is {duration} minute(s)"
         )
 
     ydl.download([url])
-    return path.join("downloads", f"{info['id']}.{info['ext']}")
+    return f"downloads/{info['id']}.{info['ext']}"

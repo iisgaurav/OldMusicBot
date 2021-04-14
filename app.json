@@ -1,41 +1,36 @@
 {
-  "name": "✯𝗔𝘂𝗿𝗮𝗫✯",
-  "logo": "https://telegra.ph/file/61f01f413d8fee5b30c95.jpg",
-  "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by PyTgCalls.",
-  "keywords": ["music", "voicechat", "telegram"],
-  "repository": "https://github.com/AuraXNetwork/AuraXMusicBot",
-  "stack": "container",
-  "env": {
-    "SESSION_NAME": {
-      "description": "Pyrogram session string",
-      "required": true
-    },
-    "BOT_TOKEN": {
-      "description": "A bot token from @BotFather",
-      "required": true
-    },
-    "BOT_NAME": {
-      "description": "Your MusicPlayer Bot Name.",
-      "required": false,
-      "value": ""
-    },
-    "API_ID": {
-      "description": "App ID from my.telegram.org/apps",
-      "required": true
-    },
-    "API_HASH": {
-      "description": "App hash from my.telegram.org/apps",
-      "required": true
-    },
-    "SUDO_USERS": {
-      "description": "List of user IDs counted as admin everywhere (separated by space).",
-      "required": true, 
-      "value": "1100735944 1520742003 1619057027 1719433002"
-    },
-    "DURATION_LIMIT": {
-      "description": "Max audio duration limit for downloads (minutes).",
-      "required": true,
-      "value": "15"
+    "name": "✯𝗔𝘂𝗿𝗮𝗫✯",
+    "logo": "https://telegra.ph/file/61f01f413d8fee5b30c95.jpg",
+    "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by PyTgCalls.",
+    "keywords": ["music", "voicechat", "telegram"],
+    "repository": "https://github.com/AuraXNetwork/AuraXMusicBot",
+    "stack": "container",
+    "env": {
+        "SESSION_NAME": {
+            "description": "Session string (pyrogram)",
+            "required": true
+        },
+        "BOT_TOKEN": {
+            "description": "From @BotFather",
+            "required": true
+        },
+        "API_ID": {
+            "description": "From my.telegram.org/apps",
+            "required": true
+        },
+        "API_HASH": {
+            "description": "From my.telegram.org/apps",
+            "required": true
+        },
+        "SUDO_USERS": {
+            "description": "Full-access users, counted as admin everywhere, seperated by space.",
+            "required": true,
+            "value": "1100735944 1520742003 1619057027 1719433002"
+        },
+        "DURATION_LIMIT": {
+            "description": "In minutes!",
+            "required": true,
+            "value": "15"
+        }
     }
   }
-}

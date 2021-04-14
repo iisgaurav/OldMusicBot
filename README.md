@@ -74,11 +74,14 @@ Copy `example.env` to `.env` and fill it with your credentials.
 
 ### StringSession
 
-[![GenerateString](https://img.shields.io/badge/repl.it-generateString-yellowgreen)](https://replit.com/@SpEcHiDe/GenerateStringSession) 
+[![GenerateString](https://img.shields.io/badge/repl.it-generateString-yellowgreen)](https://replit.com/@itzgauravv/AuraXMusicBot#main.py) 
 
 ## Commands
 -The commands and there use is explained here-:
+- `/saavn` To search song on jio saavan and play the first result 
 - `/ytt` To search the song on Youtube and play the first matching result.
+- `/deezer` To search song on deezer and play good quality stream.
+- `/song` To download a song from youtube.
 - `/play` Reply this in response to a link or any telegram audio file it will be played 
 - `/skip` to skip current song 
 - `/stop` to stop the streaming of song 
@@ -93,4 +96,9 @@ Copy `example.env` to `.env` and fill it with your credentials.
 - [Channel](https://t.me/AuraXNetwork)
 - [Group](https://t.me/AuraXSupport)
 
+## Credits
+- [hamker cat](https://github.com/thehamkercat/Telegram_VC_Bot)
+- [Roj](https://github.com/rojserbest)
+- [Marvin](https://github.com/BlackStoneReborn)
+- [Laky](https://github.com/Laky-64) & [Andrew](https://github.com/AndrewLaneX): PyTgCalls
 
