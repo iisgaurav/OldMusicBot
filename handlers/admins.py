@@ -59,7 +59,7 @@ async def skip(client: Client, message: Message):
     chat_id = message.chat.id
 
     sira.task_done(chat_id)
-    await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=🔄 Processing")
+    await message.reply_text("Processing")
     if sira.is_empty(chat_id):
         tgcalls.pytgcalls.leave_group_call(chat_id)
         await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=❗ Nothing in queue")
