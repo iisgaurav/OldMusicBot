@@ -38,7 +38,7 @@ chat_id = None
 async def play(client: Client, message_: Message):
     audio = (message_.reply_to_message.audio or message_.reply_to_message.voice) if message_.reply_to_message else None
     chat_id=message_.chat.id
-    res = await message_.reply_text("✯𝓓𝓐𝓡𝓚𝓧𝓜𝓤𝓢𝓘𝓒✯=🔄 Processing... Song")
+    res = await message_.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=🔄 Processing... Song")
 
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
@@ -78,17 +78,17 @@ async def play(client: Client, message_: Message):
 
     if message_.chat.id in tgcalls.pytgcalls.active_calls:
         position = sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"✯𝓓𝓐𝓡𝓚𝓧𝓜𝓤𝓢𝓘𝓒✯=#️⃣ Queued at position {position}.")
+        await res.edit_text(f"✯𝗔𝘂𝗿𝗮𝗫✯=#️⃣ Queued at position {position}.")
     else:
-        await res.edit_text("✯𝓓𝓐𝓡𝓚𝓧𝓜𝓤𝓢𝓘𝓒✯=▶️ Playing... Song")
+        await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Playing... Song")
         res.delete
         m = await client.send_photo(
         chat_id=message_.chat.id,
         photo="Others/thumbnail2.png",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Support⚡️", url="https://t.me/DARK_BOT_SUPPORT")]]
+            [[InlineKeyboardButton("Support⚡️", url="https://t.me/AuraXNetwork")]]
         ),
-        caption=f"Playing Your song Via  [✯𝓓𝓐𝓡𝓚𝓧𝓜𝓤𝓢𝓘𝓒✯](https://t.me/DARK_BOT_SUPPORT).",
+        caption=f"Playing Your song Via  [✯𝗔𝘂𝗿𝗮𝗫✯](https://t.me/AuraXNetwork).",
          ) 
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
 
@@ -124,18 +124,18 @@ async def deezer(client: Client, message_: Message):
     if message_.chat.id in tgcalls.pytgcalls.active_calls:
         await res.edit("adding in queue")
         position = sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"✯𝓓𝓐𝓡𝓚𝓧𝓜𝓤𝓢𝓘𝓒✯=#️⃣ Queued at position {position}.")
+        await res.edit_text(f"✯𝗔𝘂𝗿𝗮𝗫✯=#️⃣ Queued at position {position}.")
     else:
-        await res.edit_text("✯𝓓𝓐𝓡𝓚𝓧𝓜𝓤𝓢𝓘𝓒✯=▶️ Playing.... Song")
+        await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Playing.... Song")
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
     await res.delete()
     m = await client.send_photo(
         chat_id=message_.chat.id,
         photo="final.png",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Support⚡️", url="https://t.me/DARK_BOT_SUPPORT")]]
+            [[InlineKeyboardButton("Support⚡️", url="https://t.me/AuraXNetwork")]]
         ),
-        caption=f"Playing [{title}]({url}) Via [Deezer](https://t.me/DARK_BOT_SUPPORT)."
+        caption=f"Playing [{title}]({url}) Via [Deezer](https://t.me/AuraXNetwork)."
     ) 
     os.remove("final.png")
 # -----------------------------------------------------Jiosaavn-----------------------------------------------------------------
@@ -171,19 +171,19 @@ async def jiosaavn(client: Client, message_: Message):
     file_path= await convert(wget.download(slink))
     if message_.chat.id in tgcalls.pytgcalls.active_calls:
         position = sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"✯𝓓𝓐𝓡𝓚𝓧𝓜𝓤𝓢𝓘𝓒✯=#️⃣ Queued at position {position}.")
+        await res.edit_text(f"✯𝗔𝘂𝗿𝗮𝗫✯=#️⃣ Queued at position {position}.")
     else:
-        await res.edit_text("✯𝓓𝓐𝓡𝓚𝓧𝓜𝓤𝓢𝓘𝓒✯=▶️ Playing.... Song")
+        await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Playing.... Song")
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
     await res.edit("Generating Thumbnail.")
     await generate_cover_square(requested_by, sname, ssingers, sduration, sthumb)
     await res.delete()
     m = await client.send_photo(
         chat_id=message_.chat.id,
-        caption=f"Playing {sname} Via [Jiosaavn](https://t.me/DARK_BOT_SUPPORT)",
+        caption=f"Playing {sname} Via [Jiosaavn](https://t.me/AuraXNetwork)",
         photo="final.png",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Support⚡️", url="https://t.me/DARK_BOT_SUPPORT")]]
+            [[InlineKeyboardButton("Support⚡️", url="https://t.me/AuraXNetwork")]]
         ),
     )
     os.remove("final.png")
@@ -226,16 +226,16 @@ async def ytp(client: Client, message_: Message):
     file_path = await convert(download(link))
     if message_.chat.id in tgcalls.pytgcalls.active_calls:
         position = sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"✯𝓓𝓐𝓡𝓚𝓧𝓜𝓤𝓢𝓘𝓒✯=#️⃣ Queued at position {position}.")
+        await res.edit_text(f"✯𝗔𝘂𝗿𝗮𝗫✯=#️⃣ Queued at position {position}.")
     else:
-        await res.edit_text("✯𝓓𝓐𝓡𝓚𝓧𝓜𝓤𝓢𝓘𝓒✯=▶️ Playing.... Song")
+        await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Playing.... Song")
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
     await res.edit("Generating Thumbnail.")
     await generate_cover(requested_by, title, views, duration, thumbnail)
     res.delete
     m = await client.send_photo(
         chat_id=message_.chat.id,
-        caption=f"Playing `{query}` Via [YouTube](https://t.me/DARK_BOT_SUPPORT)",
+        caption=f"Playing `{query}` Via [YouTube](https://t.me/AuraXNetwork)",
         photo="final.png",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("Watch on youtube", url=link)]]
