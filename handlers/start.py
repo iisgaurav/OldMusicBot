@@ -21,15 +21,15 @@ For source code Join our support group @AuraXSupport.
             [
                 [
                     InlineKeyboardButton(
-                        "Support⚡️", url="https://t.me/AuraXSupport"
+                        "Support⚡️", url="https://t.me/ThanosAssistant_Bot"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "Creater⚡️", url="https://t.me/AuraX_Owner"
+                        "Creater⚡️", url="https://t.me/Anonymous_Bharatiya"
                     ),
                     InlineKeyboardButton(
-                        "PglZone⚡️", url="https://t.me/PglZone"
+                        "🎵Music lover🎶", url="https://t.me/Lzn2021"
                     )
                 ],
                 [
