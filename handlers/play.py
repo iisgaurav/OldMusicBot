@@ -38,7 +38,7 @@ chat_id = None
 async def play(client: Client, message_: Message):
     audio = (message_.reply_to_message.audio or message_.reply_to_message.voice) if message_.reply_to_message else None
     chat_id=message_.chat.id
-    res = await message_.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=🔄 Processing... Song")
+    res = await message_.reply_text("Ok sur, apka ganna 🔄Processing ho raha...")
 
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
@@ -69,7 +69,7 @@ async def play(client: Client, message_: Message):
                         break
 
         if offset == None:
-            await res.edit_text("❕ You did not give me anything to play.")
+            await res.edit_text("Nashe me ho ka bacha? ganne ka naam toh daal.")
             return
 
         url = text[offset:offset+length]
@@ -78,17 +78,17 @@ async def play(client: Client, message_: Message):
 
     if message_.chat.id in tgcalls.pytgcalls.active_calls:
         position = sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"✯𝗔𝘂𝗿𝗮𝗫✯=#️⃣ Queued at position {position}.")
+        await res.edit_text(f"Beta ruko jara sabar karo apka number hai {position}.")
     else:
-        await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Playing... Song")
+        await res.edit_text("Ok sur, apka ganna baja rahe hain aab")
         res.delete
         m = await client.send_photo(
         chat_id=message_.chat.id,
         photo="Others/thumbnail2.png",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Support⚡️", url="https://t.me/AuraXNetwork")]]
+            [[InlineKeyboardButton("Support⚡️", url="t.me/ThanosAssistant_Bot")]]
         ),
-        caption=f"Playing Your song Via  [✯𝗔𝘂𝗿𝗮𝗫✯](https://t.me/AuraXNetwork).",
+        caption=f"Playing Your song Via  [Yogi Thanos Baba Bots Network.",
          ) 
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
 
@@ -103,7 +103,7 @@ async def deezer(client: Client, message_: Message):
     requested_by = message_.from_user.first_name
     text = message_.text.split(" ", 1)
     queryy = text[1]
-    res = await message_.reply_text(f"Searching.... `{queryy}` on deezer")
+    res = await message_.reply_text(f"Ruko beta, apka ganna dhund rahe hain deezer pe `{queryy}` ")
     try:
         arq = ARQ("https://thearq.tech")
         r = await arq.deezer(query=queryy, limit=1)
@@ -114,7 +114,7 @@ async def deezer(client: Client, message_: Message):
         url = r[0]["url"]
     except:
         await res.edit(
-            "Found Literally Nothing, You Should Work On Your English!"
+            "7vi fail ho ka bacha? Angreezi sikho phir thik se naam likhana gaane ka!"
         )
         is_playing = False
         return
@@ -124,18 +124,18 @@ async def deezer(client: Client, message_: Message):
     if message_.chat.id in tgcalls.pytgcalls.active_calls:
         await res.edit("adding in queue")
         position = sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"✯𝗔𝘂𝗿𝗮𝗫✯=#️⃣ Queued at position {position}.")
+        await res.edit_text(f"Beta ruko jara sabar karo apka number hai {position}.")
     else:
-        await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Playing.... Song")
+        await res.edit_text("Ok sur, apka ganna baja rahe hain aab")
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
     await res.delete()
     m = await client.send_photo(
         chat_id=message_.chat.id,
         photo="final.png",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Support⚡️", url="https://t.me/AuraXNetwork")]]
+            [[InlineKeyboardButton("Support⚡️", url="t.me/ThanosAssistant_Bot")]]
         ),
-        caption=f"Playing [{title}]({url}) Via [Deezer](https://t.me/AuraXNetwork)."
+        caption=f"Playing [{title}]({url}) Via [Deezer]."
     ) 
     os.remove("final.png")
 # -----------------------------------------------------Jiosaavn-----------------------------------------------------------------
@@ -149,7 +149,7 @@ async def jiosaavn(client: Client, message_: Message):
     chat_id=message_.chat.id
     text = message_.text.split(" ", 1)
     query = text[1]
-    res = await message_.reply_text(f"Searching.... `{query}` on jio saavn")
+    res = await message_.reply_text(f"Ruko beta, apka ganna dhund rahe hain jio saavn pe `{query}` ")
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(
@@ -163,7 +163,7 @@ async def jiosaavn(client: Client, message_: Message):
         sduration = int(r[0]["duration"])
     except Exception as e:
         await res.edit(
-            "Found Literally Nothing!, You Should Work On Your English."
+            "7vi fail ho ka bacha? Angreezi sikho phir thik se naam likhana gaane ka!"
         )
         print(str(e))
         is_playing = False
@@ -171,19 +171,19 @@ async def jiosaavn(client: Client, message_: Message):
     file_path= await convert(wget.download(slink))
     if message_.chat.id in tgcalls.pytgcalls.active_calls:
         position = sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"✯𝗔𝘂𝗿𝗮𝗫✯=#️⃣ Queued at position {position}.")
+        await res.edit_text(f"Beta ruko jara sabar karo apka number hai {position}.")
     else:
-        await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Playing.... Song")
+        await res.edit_text("Ok sur, apka ganna baja rahe hain aab")
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
     await res.edit("Generating Thumbnail.")
     await generate_cover_square(requested_by, sname, ssingers, sduration, sthumb)
     await res.delete()
     m = await client.send_photo(
         chat_id=message_.chat.id,
-        caption=f"Playing {sname} Via [Jiosaavn](https://t.me/AuraXNetwork)",
+        caption=f"Playing {sname} Via [Jiosaavn]",
         photo="final.png",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Support⚡️", url="https://t.me/AuraXNetwork")]]
+            [[InlineKeyboardButton("Support⚡️", url="t.me/ThanosAssistant_Bot")]]
         ),
     )
     os.remove("final.png")
@@ -208,7 +208,7 @@ async def ytp(client: Client, message_: Message):
     chat_id=message_.chat.id
     text = message_.text.split(" ", 1)
     query = text[1]
-    res = await message_.reply_text(f"Searching.... `{query}` on You Tube")
+    res = await message_.reply_text(f"Ruko beta, apka ganna dhund rahe hain youtube pe `{query}` ")
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
         link = f"https://youtube.com{results[0]['url_suffix']}"
@@ -218,7 +218,7 @@ async def ytp(client: Client, message_: Message):
         views = results[0]["views"]
     except Exception as e:
         await res.edit(
-            "Found Literally Nothing!, You Should Work On Your English."
+            "7vi fail ho ka bacha? Angreezi sikho phir thik se naam likhana gaane ka."
         )
         is_playing = False
         print(str(e))
@@ -226,16 +226,16 @@ async def ytp(client: Client, message_: Message):
     file_path = await convert(download(link))
     if message_.chat.id in tgcalls.pytgcalls.active_calls:
         position = sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"✯𝗔𝘂𝗿𝗮𝗫✯=#️⃣ Queued at position {position}.")
+        await res.edit_text(f"Beta ruko jara sabar karo apka number hai {position}.")
     else:
-        await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Playing.... Song")
+        await res.edit_text("Ok sur, apka ganna baja rahe hain aab")
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
     await res.edit("Generating Thumbnail.")
     await generate_cover(requested_by, title, views, duration, thumbnail)
     res.delete
     m = await client.send_photo(
         chat_id=message_.chat.id,
-        caption=f"Playing `{query}` Via [YouTube](https://t.me/AuraXNetwork)",
+        caption=f"Playing `{query}` Via [YouTube]",
         photo="final.png",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("Watch on youtube", url=link)]]
