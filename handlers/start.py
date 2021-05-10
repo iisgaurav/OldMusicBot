@@ -28,6 +28,8 @@ For any queries message on @ThanosAssistant_Bot.
                     InlineKeyboardButton(
                         "Creater⚡️", url="https://t.me/Anonymous_Bharatiya"
                     ),
+                    InlineKeyboardButton(
+                        "🎵Music lover🎶", url="https://t.me/lzn2021"
                     
                     )
                 ],
