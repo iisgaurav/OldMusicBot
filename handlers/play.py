@@ -69,7 +69,7 @@ async def play(client: Client, message_: Message):
                         break
 
         if offset == None:
-            await res.edit_text("Nashe me ho ka bacha? ganne ka naam toh daal.")
+            await res.edit_text("❕Nashe me ho ka bacha? ganne ka naam toh daal.")
             return
 
         url = text[offset:offset+length]
@@ -86,9 +86,9 @@ async def play(client: Client, message_: Message):
         chat_id=message_.chat.id,
         photo="Others/thumbnail2.png",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Support⚡️", url="t.me/ThanosAssistant_Bot")]]
+            [[InlineKeyboardButton("Support⚡️", url="https://t.me/ThanosAssistant_Bot")]]
         ),
-        caption=f"Playing Your song Via  [Yogi Thanos Baba Bots Network]",
+        caption=f"Playing Your song Via  [🚩༺★Yogi Thanos Baba★༻🚩](https://t.me/ThanosAssistant_Bot).",
          ) 
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
 
@@ -103,7 +103,7 @@ async def deezer(client: Client, message_: Message):
     requested_by = message_.from_user.first_name
     text = message_.text.split(" ", 1)
     queryy = text[1]
-    res = await message_.reply_text(f"Beta ruko jara sabar karo, apka ganna dhund rahe hain deezer pe `{queryy}` ")
+    res = await message_.reply_text(f"Searching.... `{queryy}` on deezer")
     try:
         arq = ARQ("https://thearq.tech")
         r = await arq.deezer(query=queryy, limit=1)
@@ -114,7 +114,7 @@ async def deezer(client: Client, message_: Message):
         url = r[0]["url"]
     except:
         await res.edit(
-            "7vi fail ho ka bacha? Angreezi sikho phir thik se naam likhana gaane ka!"
+            "Found Literally Nothing, You Should Work On Your English!"
         )
         is_playing = False
         return
@@ -124,18 +124,18 @@ async def deezer(client: Client, message_: Message):
     if message_.chat.id in tgcalls.pytgcalls.active_calls:
         await res.edit("adding in queue")
         position = sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"Koi dhakka mukki nahi karega, apka number hai {position}.")
+        await res.edit_text(f"✯𝗔𝘂𝗿𝗮𝗫✯=#️⃣ Queued at position {position}.")
     else:
-        await res.edit_text("Ok sur, apka ganna baja rahe hain aab")
+        await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Playing.... Song")
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
     await res.delete()
     m = await client.send_photo(
         chat_id=message_.chat.id,
         photo="final.png",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Support⚡️", url="t.me/ThanosAssistant_Bot")]]
+            [[InlineKeyboardButton("Support⚡️", url="https://t.me/AuraXNetwork")]]
         ),
-        caption=f"Playing [{title}]({url}) Via [Yogi Thanos Baba Bots Network]."
+        caption=f"Playing [{title}]({url}) Via [Deezer](https://t.me/AuraXNetwork)."
     ) 
     os.remove("final.png")
 # -----------------------------------------------------Jiosaavn-----------------------------------------------------------------
@@ -149,7 +149,7 @@ async def jiosaavn(client: Client, message_: Message):
     chat_id=message_.chat.id
     text = message_.text.split(" ", 1)
     query = text[1]
-    res = await message_.reply_text(f"Beta ruko jara sabar karo, apka ganna dhund rahe hain deezer pe jio saavn pe `{query}` ")
+    res = await message_.reply_text(f"Searching.... `{query}` on jio saavn")
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(
@@ -163,7 +163,7 @@ async def jiosaavn(client: Client, message_: Message):
         sduration = int(r[0]["duration"])
     except Exception as e:
         await res.edit(
-            "7vi fail ho ka bacha? Angreezi sikho phir thik se naam likhana gaane ka!"
+            "Found Literally Nothing!, You Should Work On Your English."
         )
         print(str(e))
         is_playing = False
@@ -171,19 +171,19 @@ async def jiosaavn(client: Client, message_: Message):
     file_path= await convert(wget.download(slink))
     if message_.chat.id in tgcalls.pytgcalls.active_calls:
         position = sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"Koi dhakka mukki nahi karega, apka number hai {position}.")
+        await res.edit_text(f"✯𝗔𝘂𝗿𝗮𝗫✯=#️⃣ Queued at position {position}.")
     else:
-        await res.edit_text("Ok sur, apka ganna baja rahe hain aab")
+        await res.edit_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Playing.... Song")
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
     await res.edit("Generating Thumbnail.")
     await generate_cover_square(requested_by, sname, ssingers, sduration, sthumb)
     await res.delete()
     m = await client.send_photo(
         chat_id=message_.chat.id,
-        caption=f"Playing {sname} Via [Jiosaavn]",
+        caption=f"Playing {sname} Via [Jiosaavn](https://t.me/AuraXNetwork)",
         photo="final.png",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Support⚡️", url="t.me/ThanosAssistant_Bot")]]
+            [[InlineKeyboardButton("Support⚡️", url="https://t.me/AuraXNetwork")]]
         ),
     )
     os.remove("final.png")
@@ -199,7 +199,7 @@ def changeImageSize(maxWidth, maxHeight, image):
  
  #-----------------------------------YOUTUBE--------------------------------------------------------------
 @Client.on_message(
-    filters.command("ytt")
+    filters.command("play")
     & filters.group
     & ~ filters.edited
 )
@@ -208,7 +208,7 @@ async def ytp(client: Client, message_: Message):
     chat_id=message_.chat.id
     text = message_.text.split(" ", 1)
     query = text[1]
-    res = await message_.reply_text(f"Beta ruko jara sabar karo, apka ganna dhund rahe hain youtube pe `{query}` ")
+    res = await message_.reply_text(f"Beta ruko jara sabar karo, dhund rahe hain `{query}` You Tube pe")
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
         link = f"https://youtube.com{results[0]['url_suffix']}"
@@ -218,7 +218,7 @@ async def ytp(client: Client, message_: Message):
         views = results[0]["views"]
     except Exception as e:
         await res.edit(
-            "7vi fail ho ka bacha? Angreezi sikho phir thik se naam likhana gaane ka."
+            "7vi fail ho ka bacha? Likhna sikho phir thik se naam likhana gaane ka....Found Literally Nothing!"
         )
         is_playing = False
         print(str(e))
@@ -235,7 +235,7 @@ async def ytp(client: Client, message_: Message):
     res.delete
     m = await client.send_photo(
         chat_id=message_.chat.id,
-        caption=f"Playing `{query}` Via [Yogi Thanos Baba Bots Network]",
+        caption=f"Baithe kya ho, Sab Nacho apka ganna baaj raha hai `{query}` Via [YouTube](https://t.me/ThanosAssistant_Bot)",
         photo="final.png",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("Watch on youtube", url=link)]]
