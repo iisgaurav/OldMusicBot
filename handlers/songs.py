@@ -22,7 +22,7 @@ def song(client, message):
     for i in message.command[1:]:
         query += ' ' + str(i)
     print(query)
-    m = message.reply('✯𝗔𝘂𝗿𝗮𝗫✯=🔎 Searching the song...')
+    m = message.reply('Beta ruko jara sabar karo, apka ganna dhund rahe hain...')
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -41,17 +41,17 @@ def song(client, message):
 
     except Exception as e:
         m.edit(
-            "✯𝗔𝘂𝗿𝗮𝗫✯=❌ Found Nothing.\n\nTry another keywork or maybe spell it properly."
+            "7vi fail ho ka bacha? Angreezi sikho phir thik se naam likhana gaane ka!"
         )
         print(str(e))
         return
-    m.edit("✯𝗔𝘂𝗿𝗮𝗫✯=⏬ Downloading the song by @AuraXNetwork...")
+    m.edit("Ok sue, Apka ganna download ho raha via Yogi Thanos Baba Bots Network...")
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = '**✯𝗔𝘂𝗿𝗮𝗫✯=🆙 Uploaded by @AuraXNetwork**'
+        rep = '**Koi Dhakka Mukki nahi karega, Ganna upload hogaya hai via Yogi Thanos Baba Bots Network**'
         secmul, dur, dur_arr = 1, 0, duration.split(':')
         for i in range(len(dur_arr)-1, -1, -1):
             dur += (int(dur_arr[i]) * secmul)
@@ -59,7 +59,7 @@ def song(client, message):
         message.reply_audio(audio_file, caption=rep, thumb=thumb_name, parse_mode='md', title=title, duration=dur)
         m.delete()
     except Exception as e:
-        m.edit('✯𝗔𝘂𝗿𝗮𝗫✯=❌ Error')
+        m.edit('*Error*....Ka bache nashe karke aye ho kya')
         print(e)
 
     try:
