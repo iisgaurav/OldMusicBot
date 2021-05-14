@@ -41,7 +41,7 @@ Copy `example.env` to `.env` and fill it with your credentials.
 
 ### StringSession
 
-[![GenerateString](https://img.shields.io/badge/repl.it-generateString-yellowgreen)](https://replit.com/@itzgauravv/AuraXVCBot#main.py) 
+[![GenerateString](https://img.shields.io/badge/repl.it-generateString-yellowgreen)](https://replit.com/@SouravDas11/YTB-NETWORK-pyrogram#main.py) 
 
 ## Commands
 -The commands and there use is explained here-:
