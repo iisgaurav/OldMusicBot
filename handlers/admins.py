@@ -16,7 +16,7 @@ from helpers.wrappers import errors, admins_only
 @admins_only
 async def pause(client: Client, message: Message):
     tgcalls.pytgcalls.pause_stream(message.chat.id)
-    await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=⏸ Paused.")
+    await message.reply_text("Ok sue, Apka ganna band kar diya😢")
 
 
 @Client.on_message(
@@ -28,7 +28,7 @@ async def pause(client: Client, message: Message):
 @admins_only
 async def resume(client: Client, message: Message):
     tgcalls.pytgcalls.resume_stream(message.chat.id)
-    await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=▶️ Resumed.")
+    await message.reply_text("Sab baithe kyu ho, Nacho 🥳 🕺💃....ganna chalu hogaya")
 
 
 @Client.on_message(
@@ -45,7 +45,7 @@ async def stop(client: Client, message: Message):
         pass
 
     tgcalls.pytgcalls.leave_group_call(message.chat.id)
-    await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=⏹ Stopped streaming.")
+    await message.reply_text("Nashe me hai ka bacha jo ganna bandh karwa raha hai.")
 
 
 @Client.on_message(
@@ -62,13 +62,13 @@ async def skip(client: Client, message: Message):
     await message.reply_text("Processing")
     if sira.is_empty(chat_id):
         tgcalls.pytgcalls.leave_group_call(chat_id)
-        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=❗ Nothing in queue")
+        await message.reply_text("Itne nashe maat kar, NCB ka raid pad gaye ka tere ghar me......There is nothing in queue to skip")
     else:
         tgcalls.pytgcalls.change_stream(
             chat_id, sira.get(chat_id)["file_path"]
         )
 
-        await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=⏩ Skipped the current song.")
+        await message.reply_text("Ok sue, apka agla ganna baja rahe hain ")
 
 
 @Client.on_message(
@@ -78,7 +78,7 @@ async def skip(client: Client, message: Message):
 @admins_only
 async def admincache(client, message: Message):
     set(message.chat.id, [member.user for member in await message.chat.get_members(filter="administrators")])
-    await message.reply_text("✯𝗔𝘂𝗿𝗮𝗫✯=❇️ Admin cache refreshed!")
+    await message.reply_text("Music Bot DataBase Admin cache refreshed!")
 
 @Client.on_message(
     filters.command("help")
