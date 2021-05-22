@@ -77,6 +77,7 @@ Copy `example.env` to `.env` and fill it with your credentials.
 - [Group](https://t.me/AuraXSupport)
 
 ## Credits
+- [iisgaurav](https://github.com/iisgaurav): developer
 - [hamker cat](https://github.com/thehamkercat/Telegram_VC_Bot)
 - [Roj](https://github.com/rojserbest)
 - [Marvin](https://github.com/BlackStoneReborn)
