@@ -1,4 +1,4 @@
-# AuraXMusicBot TELEGRAM VC MUSIC BOT - This is a pyrogram bot based on pytgcalls for playing songs or audio files in Telegram group voice chat
+# AuraXMusicBot TELEGRAM VC MUSIC BOT 
 [![AuraXMusicBot logo](https://telegra.ph/file/d21963be67c93841589ee.jpg)](https://t.me/AuraXNetwork)
 
 
